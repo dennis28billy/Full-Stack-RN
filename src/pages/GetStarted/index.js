@@ -21,7 +21,7 @@ const GetStarted = ({navigation}) => {
         <Button
           type="secondary"
           title="Sign In"
-          onPress={() => navigation.replace('Login')}
+          onPress={() => navigation.navigate('Login')}
         />
       </View>
     </ImageBackground>
