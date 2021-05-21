@@ -1,5 +1,21 @@
-import IconBackDark from './arrow_back_24px_outlined.svg';
-import IconAddPhoto from './btn_add_photo.svg';
-import IconRemovePhoto from './btn_remove_photo.svg';
+import IconBackDark from './iconBackDark.svg';
+import IconAddPhoto from './iconAddPhoto.svg';
+import IconRemovePhoto from './iconRemovePhoto.svg';
+import IconDoctor from './iconDoctor.svg';
+import IconDoctorActive from './iconDoctorActive.svg';
+import IconMessages from './iconMessages.svg';
+import IconMessagesActive from './iconMessagesActive.svg';
+import IconHospitals from './iconHospitals.svg';
+import IconHospitalsActive from './iconHospitalsActive.svg';
 
-export {IconBackDark, IconAddPhoto, IconRemovePhoto};
+export {
+  IconBackDark,
+  IconAddPhoto,
+  IconRemovePhoto,
+  IconDoctor,
+  IconDoctorActive,
+  IconMessages,
+  IconMessagesActive,
+  IconHospitals,
+  IconHospitalsActive,
+};
