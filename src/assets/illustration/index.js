@@ -4,6 +4,7 @@ import ILNullPhoto from './user_photo_null.png';
 import ILCatUmum from './cat_dokterUmum.svg';
 import ILCatPsikiater from './cat_psikiater.svg';
 import ILCatObat from './cat_dokterObat.svg';
+import ILHospitalBG from './backgroundHospital.png';
 
 export {
   ILLogo,
@@ -12,4 +13,5 @@ export {
   ILCatUmum,
   ILCatPsikiater,
   ILCatObat,
+  ILHospitalBG,
 };
