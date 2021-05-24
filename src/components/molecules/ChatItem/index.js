@@ -1,12 +1,14 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import {colors, fonts} from '../../../utils';
+import IsMe from './IsMe';
+import Other from './Other';
 
-const ChatItem = () => {
-  return (
-    <View>
-      <Text>Chat Item Component</Text>
-    </View>
-  );
+const ChatItem = ({isMe, text, time}) => {
+  if (isMe) {
+    return <IsMe message={text} date={time} />;
+  }
+  return <Other message={text} date={time} />;
 };
 
 export default ChatItem;
