@@ -10,6 +10,8 @@ import IconHospitals from './iconHospitals.svg';
 import IconHospitalsActive from './iconHospitalsActive.svg';
 import IconStar from './iconStar.svg';
 import IconNext from './iconNext.svg';
+import IconSendDark from './iconSendDark.svg';
+import IconSendLight from './iconSendLight.svg';
 
 export {
   IconBackDark,
@@ -24,4 +26,6 @@ export {
   IconHospitalsActive,
   IconStar,
   IconNext,
+  IconSendDark,
+  IconSendLight,
 };
