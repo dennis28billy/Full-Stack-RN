@@ -8,7 +8,15 @@ import {
   RatedDoctor,
 } from '../../components/molecules';
 import {colors, fonts} from '../../utils';
-import {JSONCategoryDoctor} from '../../assets';
+import {
+  DummyDoctor1,
+  DummyDoctor2,
+  DummyDoctor3,
+  DummyNews1,
+  DummyNews2,
+  DummyNews3,
+  JSONCategoryDoctor,
+} from '../../assets';
 
 const Doctor = () => {
   return (
@@ -39,14 +47,38 @@ const Doctor = () => {
           </View>
           <View style={styles.wrapperSection}>
             <Text style={styles.sectionLabel}>Top Rated Doctors</Text>
-            <RatedDoctor />
-            <RatedDoctor />
-            <RatedDoctor />
+            <RatedDoctor
+              pic={DummyDoctor1}
+              name="Alexa Rachel"
+              profession="Pediatrician"
+            />
+            <RatedDoctor
+              pic={DummyDoctor2}
+              name="Sunny Frank"
+              profession="Dentist"
+            />
+            <RatedDoctor
+              pic={DummyDoctor3}
+              name="Poe Minn"
+              profession="Podiatrist"
+            />
             <Text style={styles.sectionLabel}>Good News</Text>
           </View>
-          <NewsItem />
-          <NewsItem />
-          <NewsItem />
+          <NewsItem
+            title="Is it safe to stay at home during coronavirus?"
+            date="Today"
+            pic={DummyNews1}
+          />
+          <NewsItem
+            title="Consume yellow citrus helps you healthier"
+            date="Today"
+            pic={DummyNews2}
+          />
+          <NewsItem
+            title="Learn how to make a proper orange juice at home"
+            date="Today"
+            pic={DummyNews3}
+          />
           <Gap height={30} />
         </ScrollView>
       </View>
