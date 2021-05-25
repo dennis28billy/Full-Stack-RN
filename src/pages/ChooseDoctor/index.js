@@ -29,24 +29,28 @@ const ChooseDoctor = ({navigation}) => {
         name="John McParker Steve"
         desc="Pria"
         type="next"
+        onPress={() => navigation.navigate('Chatting')}
       />
       <List
         profile={DummyDoctor9}
         name="Nairobi Putri Hayza"
         desc="Wanita"
         type="next"
+        onPress={() => navigation.navigate('Chatting')}
       />
       <List
         profile={DummyDoctor10}
         name="James Rivillia"
         desc="Pria"
         type="next"
+        onPress={() => navigation.navigate('Chatting')}
       />
       <List
         profile={DummyDoctor11}
         name="Liu Yue Tian Park"
         desc="Wanita"
         type="next"
+        onPress={() => navigation.navigate('Chatting')}
       />
     </View>
   );

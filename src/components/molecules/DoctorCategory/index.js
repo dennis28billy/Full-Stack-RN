@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
-import {ILCatObat, ILCatPsikiater, ILCatUmum} from '../../../assets';
+import {ILCatObat, ILCatPsikiater, ILCatUmum, ILCatAnak} from '../../../assets';
 import {colors, fonts} from '../../../utils';
 
 const DoctorCategory = ({category, onPress}) => {
@@ -13,6 +13,9 @@ const DoctorCategory = ({category, onPress}) => {
     }
     if (category === 'dokter obat') {
       return <ILCatObat style={styles.illustration} />;
+    }
+    if (category === 'dokter anak') {
+      return <ILCatAnak style={styles.illustration} />;
     }
     return <ILCatUmum style={styles.illustration} />;
   };
