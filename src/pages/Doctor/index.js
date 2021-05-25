@@ -52,19 +52,22 @@ const Doctor = ({navigation}) => {
           <View style={styles.wrapperSection}>
             <Text style={styles.sectionLabel}>Top Rated Doctors</Text>
             <RatedDoctor
-              pic={DummyDoctor1}
+              avatar={DummyDoctor1}
               name="Alexa Rachel"
-              profession="Pediatrician"
+              desc="Pediatrician"
+              onPress={() => navigation.navigate('DoctorProfile')}
             />
             <RatedDoctor
-              pic={DummyDoctor2}
+              avatar={DummyDoctor2}
               name="Sunny Frank"
-              profession="Dentist"
+              desc="Dentist"
+              onPress={() => navigation.navigate('DoctorProfile')}
             />
             <RatedDoctor
-              pic={DummyDoctor3}
+              avatar={DummyDoctor3}
               name="Poe Minn"
-              profession="Podiatrist"
+              desc="Podiatrist"
+              onPress={() => navigation.navigate('DoctorProfile')}
             />
             <Text style={styles.sectionLabel}>Good News</Text>
           </View>

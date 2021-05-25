@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
+import {DummyUser} from '../../assets';
 import {Gap, Header, List, Profile} from '../../components';
 
 const UserProfile = ({navigation}) => {
@@ -7,7 +8,11 @@ const UserProfile = ({navigation}) => {
     <View style={styles.page}>
       <Header title="Profile" />
       <Gap height={10} />
-      <Profile name="Shayna Melinda" desc="Product Designer" />
+      <Profile
+        name="Shayna Melinda"
+        desc="Product Designer"
+        avatar={DummyUser}
+      />
       <Gap height={14} />
       <List
         name="Edit Profile"
