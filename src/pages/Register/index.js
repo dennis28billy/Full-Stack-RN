@@ -2,13 +2,9 @@ import React, {useState} from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import {Button, Gap, Header, Input} from '../../components';
 import {colors, useForm} from '../../utils';
+import {Fire} from '../../config';
 
 const Register = ({navigation}) => {
-  const [fullName, setFullName] = useState('');
-  const [profession, setProfession] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
   const [form, setForm] = useForm({
     fullName: '',
     profession: '',
@@ -17,6 +13,15 @@ const Register = ({navigation}) => {
   });
   const onContinue = () => {
     console.log(form);
+    Fire.auth()
+      .createUserWithEmailAndPassword(form.email, form.password)
+      .then(success => {
+        console.log('register success: ', success);
+      })
+      .catch(error => {
+        const errorMessage = error.message;
+        console.log('error register: ', errorMessage);
+      });
     //navigation.navigate('UploadPhoto')
   };
 
