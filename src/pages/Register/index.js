@@ -17,7 +17,6 @@ const Register = ({navigation}) => {
 
   const onContinue = () => {
     console.log(form);
-
     setLoading(true);
     firebase
       .auth()
@@ -36,7 +35,7 @@ const Register = ({navigation}) => {
           .set(data);
 
         storeData('user', data);
-        navigation.navigate('UploadPhoto');
+        navigation.navigate('UploadPhoto', data);
         console.log('register success: ', success);
       })
       .catch(error => {
