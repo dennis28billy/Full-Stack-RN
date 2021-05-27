@@ -16,7 +16,7 @@ const UserProfile = ({navigation}) => {
       data.photo = {uri: response.photo};
       setProfile(data);
     });
-  });
+  }, []);
   return (
     <View style={styles.page}>
       <Header title="Profile" onPress={() => navigation.goBack()} />
