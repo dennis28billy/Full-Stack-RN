@@ -28,18 +28,9 @@ const UpdateProfile = ({navigation}) => {
   }, []);
 
   const update = () => {
-    console.log('profile: ', profile);
-
-    console.log('new password: ', password);
-
     if (password.length > 0) {
       if (password.length < 6) {
-        showMessage({
-          message: 'Password kurang dari 6 karakter',
-          type: 'default',
-          backgroundColor: colors.error,
-          color: 'white',
-        });
+        showError('Password kurang dari 6 karakter');
       } else {
         updatePassword();
         updateProfileData();
@@ -75,7 +66,6 @@ const UpdateProfile = ({navigation}) => {
       .ref(`users/${profile.uid}/`)
       .update(data)
       .then(() => {
-        console.log('success: ', data);
         storeData('user', data);
       })
       .catch(error => {
@@ -99,7 +89,6 @@ const UpdateProfile = ({navigation}) => {
     launchImageLibrary(
       {quality: 0.2, maxWidth: 200, maxHeight: 200, includeBase64: true},
       response => {
-        console.log('response: ', response);
         if (response.didCancel || response.error) {
           showMessage({
             message: 'Anda belum mengupload foto',
@@ -108,7 +97,6 @@ const UpdateProfile = ({navigation}) => {
             color: colors.white,
           });
         } else {
-          console.log('response getImage: ', response);
           setPhotoForDB(`data:${response.type};base64, ${response.base64}`);
           const source = {uri: response.uri};
           setPhoto(source);

@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import {Button, Gap, Header, Input, Loading} from '../../components';
-import {colors, getData, storeData, useForm} from '../../utils';
 import {firebase} from '../../config';
-import {showMessage, hideMessage} from 'react-native-flash-message';
+import {colors, storeData, useForm, showError} from '../../utils';
 
 const Register = ({navigation}) => {
   const [form, setForm] = useForm({
@@ -16,7 +15,6 @@ const Register = ({navigation}) => {
   const [loading, setLoading] = useState(false);
 
   const onContinue = () => {
-    console.log(form);
     setLoading(true);
     firebase
       .auth()
@@ -37,18 +35,10 @@ const Register = ({navigation}) => {
 
         storeData('user', data);
         navigation.navigate('UploadPhoto', data);
-        console.log('register success: ', success);
       })
       .catch(error => {
-        const errorMessage = error.message;
         setLoading(false);
-        showMessage({
-          message: errorMessage,
-          type: 'default',
-          backgroundColor: colors.error,
-          color: colors.white,
-        });
-        console.log('error : ', error);
+        showError(error.message);
       });
   };
 
