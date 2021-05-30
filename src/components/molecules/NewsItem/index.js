@@ -9,7 +9,7 @@ const NewsItem = ({title, date, pic}) => {
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.date}>{date}</Text>
       </View>
-      <Image source={pic} style={styles.image} />
+      <Image source={{uri: pic}} style={styles.image} />
     </View>
   );
 };

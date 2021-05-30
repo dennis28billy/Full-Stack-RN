@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {Gap} from '../../components';
 import {
@@ -7,7 +7,7 @@ import {
   NewsItem,
   RatedDoctor,
 } from '../../components/molecules';
-import {colors, fonts, getData} from '../../utils';
+import {colors, fonts, getData, showError} from '../../utils';
 import {
   DummyDoctor1,
   DummyDoctor2,
@@ -17,13 +17,26 @@ import {
   DummyNews3,
   JSONCategoryDoctor,
 } from '../../assets';
+import {firebase} from '../../config';
 
 const Doctor = ({navigation}) => {
+  const [news, setNews] = useState([]);
   useEffect(() => {
-    getData('user').then(res => {
-      console.log('data user: ', res);
-    });
-  });
+    firebase
+      .database()
+      .ref('news/')
+      .once('value')
+      .then(response => {
+        console.log('data: ', response.val());
+        if (response.val()) {
+          setNews(response.val());
+        }
+      })
+      .catch(error => {
+        showError(error.message);
+      });
+  }, []);
+
   return (
     <View style={styles.page}>
       <View style={styles.content}>
@@ -76,21 +89,17 @@ const Doctor = ({navigation}) => {
             />
             <Text style={styles.sectionLabel}>Good News</Text>
           </View>
-          <NewsItem
-            title="Is it safe to stay at home during coronavirus?"
-            date="Today"
-            pic={DummyNews1}
-          />
-          <NewsItem
-            title="Consume yellow citrus helps you healthier"
-            date="Today"
-            pic={DummyNews2}
-          />
-          <NewsItem
-            title="Learn how to make a proper orange juice at home"
-            date="Today"
-            pic={DummyNews3}
-          />
+          {news.map(item => {
+            return (
+              <NewsItem
+                key={item.id}
+                title={item.title}
+                date={item.date}
+                pic={item.image}
+              />
+            );
+          })}
+
           <Gap height={30} />
         </ScrollView>
       </View>
