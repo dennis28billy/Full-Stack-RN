@@ -28,11 +28,12 @@ const Register = ({navigation}) => {
           email: form.email,
           uid: success.user.uid,
         };
+
         firebase
           .database()
           .ref('users/' + success.user.uid + '/')
           .set(data);
-
+        console.log('data: ', data);
         storeData('user', data);
         navigation.navigate('UploadPhoto', data);
       })
