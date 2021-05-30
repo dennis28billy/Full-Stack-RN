@@ -1,5 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {
+  DummyDoctor1,
+  DummyDoctor2,
+  DummyDoctor3,
+  JSONCategoryDoctor,
+} from '../../assets';
 import {Gap} from '../../components';
 import {
   DoctorCategory,
@@ -7,17 +13,8 @@ import {
   NewsItem,
   RatedDoctor,
 } from '../../components/molecules';
-import {colors, fonts, getData, showError} from '../../utils';
-import {
-  DummyDoctor1,
-  DummyDoctor2,
-  DummyDoctor3,
-  DummyNews1,
-  DummyNews2,
-  DummyNews3,
-  JSONCategoryDoctor,
-} from '../../assets';
 import {firebase} from '../../config';
+import {colors, fonts, showError} from '../../utils';
 
 const Doctor = ({navigation}) => {
   const [news, setNews] = useState([]);
