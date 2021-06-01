@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
-import {DummyDoctor1, DummyDoctor2, DummyDoctor3} from '../../assets';
 import {Gap} from '../../components';
 import {
   DoctorCategory,
@@ -28,8 +27,13 @@ const Doctor = ({navigation}) => {
       .ref('category_doctor/')
       .once('value')
       .then(response => {
+        console.log('category doctor: ', response.val());
         if (response.val()) {
-          setCategoryDoctor(response.val());
+          const data = response.val();
+          const filterData = data.filter(element => element !== null);
+
+          console.log('data hasil filter: ', filterData);
+          setCategoryDoctor(filterData);
         }
       })
       .catch(error => {
@@ -69,8 +73,13 @@ const Doctor = ({navigation}) => {
       .ref('news/')
       .once('value')
       .then(response => {
+        console.log('news: ', response.val());
         if (response.val()) {
-          setNews(response.val());
+          const data = response.val();
+          const filterData = data.filter(element => element !== null);
+
+          console.log('data news filter: ', filterData);
+          setNews(filterData);
         }
       })
       .catch(error => {
