@@ -1,56 +1,39 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {DummyDoctor4, DummyDoctor5, DummyDoctor6} from '../../assets';
 import {List} from '../../components';
-import {colors, fonts, getData} from '../../utils';
 import {firebase} from '../../config';
+import {colors, fonts, getData} from '../../utils';
 
 const Messages = ({navigation}) => {
-  const [doctors] = useState([
-    {
-      id: 1,
-      profile: DummyDoctor4,
-      name: 'Alexander Jannie',
-      desc: 'Baik ibu, terima kasih banyak atas waktu...',
-    },
-    {
-      id: 2,
-      profile: DummyDoctor5,
-      name: 'Nairobi Putri Hayza',
-      desc: 'Oh tentu saja tidak karena jeruk it...',
-    },
-    {
-      id: 3,
-      profile: DummyDoctor6,
-      name: 'John McParker Steve',
-      desc: 'Oke menurut pak dokter bagaimana unt...',
-    },
-  ]);
   const [user, setUser] = useState({});
   const [historyChat, setHistoryChat] = useState([]);
 
   useEffect(() => {
     getDataUserFromLocal();
+    const rootDB = firebase.database().ref();
     const urlHistory = `messages/${user.uid}/`;
+    const messagesDB = rootDB.child(urlHistory);
+    messagesDB.on('value', async snapshot => {
+      if (snapshot.val()) {
+        const oldData = snapshot.val();
+        const data = [];
 
-    firebase
-      .database()
-      .ref(urlHistory)
-      .on('value', snapshot => {
-        console.log('data history: ', snapshot.val());
-        if (snapshot.val()) {
-          const oldData = snapshot.val();
-          const data = [];
-          Object.keys(oldData).map(key => {
-            data.push({
-              id: key,
-              ...oldData[key],
-            });
+        const promises = await Object.keys(oldData).map(async key => {
+          const urlUidDoctor = `doctors/${oldData[key].uidPartner}`;
+          const detailDoctor = await rootDB.child(urlUidDoctor).once('value');
+          console.log('detail doctor : ', detailDoctor.val());
+          data.push({
+            id: key,
+            detailDoctor: detailDoctor.val(),
+            ...oldData[key],
           });
-          console.log('new data history: ', data);
-          setHistoryChat(data);
-        }
-      });
+        });
+
+        await Promise.all(promises);
+        console.log('new data history: ', data);
+        setHistoryChat(data);
+      }
+    });
   }, []);
 
   const getDataUserFromLocal = () => {
@@ -67,8 +50,8 @@ const Messages = ({navigation}) => {
           return (
             <List
               key={chat.id}
-              //profile={chat.uidPartner}
-              name={chat.uidPartner}
+              profile={{uri: chat.detailDoctor.photo}}
+              name={chat.detailDoctor.fullName}
               desc={chat.lastContentChat}
               onPress={() => navigation.navigate('Chatting')}
             />
