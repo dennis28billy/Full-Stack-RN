@@ -1,15 +1,14 @@
 import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
-import {DummyDoctor9} from '../../../assets';
 import {colors, fonts} from '../../../utils';
 
-const Other = ({message, date}) => {
+const Other = ({text, date, photo}) => {
   return (
     <View style={styles.container}>
-      <Image style={styles.avatar} source={DummyDoctor9} />
+      <Image style={styles.avatar} source={photo} />
       <View>
         <View style={styles.chatContent}>
-          <Text style={styles.text}>{message}</Text>
+          <Text style={styles.text}>{text}</Text>
         </View>
         <Text style={styles.date}>{date}</Text>
       </View>
